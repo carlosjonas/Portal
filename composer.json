@@ -1,0 +1,8 @@
+{
+	"name":"portal/noticias",
+	"autoload":{
+		"psr-4":{
+			"App\\":"app/"
+		}
+	}
+}
