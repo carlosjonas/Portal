@@ -46,7 +46,22 @@ class Noticia{
 
 	//Método que retorna notícia com o id
 	public static function getNoticia($id){
-		return (new DataBase('noticias'))->select('id = '.$id)->fetcObject(self::class);
+		return (new DataBase('noticias'))->select('id = '.$id)->fetchObject(self::class);
+	}
+
+	//Método de atualização de dados da notícia
+	public function atualizar(){
+		return (new DataBase('noticias'))->update('id = '.$this->id,[
+			'titulo' => $this->titulo,
+			'descricao' => $this->descricao,
+			'ativo' => $this->ativo,
+			'data' => $this->data,
+		]);
+	}
+
+	//Método de exclusão de notícia
+	public function excluir(){
+		return (new DataBase('noticias'))->delete('id = '.$this->id);
 	}
 }
 
