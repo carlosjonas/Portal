@@ -2,12 +2,14 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+define('TITLE','Cadastrar Notícia');
+
 use \App\Entity\Noticia;
+$noticia = new Noticia();
 
 // Validação de campos do formulário 
 if (isset($_POST['titulo'],$_POST['descricao'],$_POST['ativo'])) {
 
-	$noticia = new Noticia;
 	$noticia->titulo = $_POST['titulo'];
 	$noticia->descricao = $_POST['descricao'];
 	$noticia->ativo = $_POST['ativo'];
