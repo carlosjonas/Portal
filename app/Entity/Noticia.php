@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use \App\Db\Database;
+use \PDO;
 
 class Noticia{
 
@@ -21,15 +22,31 @@ class Noticia{
 
 	//Função para cadastrar a notícia
 	public function cadastrar(){
+
 		//Definindo a data
 		$this->data = date('Y-m-d H:i:s');
-		//Inserir a noticia no banco
-		$database = new DataBase('portal');
-		echo "<pre>"; print_r($database); echo "</pre>"; exit;
 
-		//Colocar o id da noticia na instância
+		//Inserir a noticia no banco
+		$database = new DataBase('noticias');
+		$this->id = $database->insert([
+			'titulo' => $this->titulo,
+			'descricao' => $this->descricao,
+			'ativo' => $this->ativo,
+			'data' => $this->data,
+		]);
 
 		//Return sucesso
+		return true;
+	}
+
+	//Método que retorna as notícias do banco
+	public static function getNoticias($where = null, $order = null, $limit = null){
+		return (new DataBase('noticias'))->select($where,$order,$limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+	}
+
+	//Método que retorna notícia com o id
+	public static function getNoticia($id){
+		return (new DataBase('noticias'))->select('id = '.$id)->fetcObject(self::class);
 	}
 }
 
