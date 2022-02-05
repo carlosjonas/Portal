@@ -3,6 +3,7 @@
 namespace App\Db;
 
 use \PDO;
+use \PDOException;
 
 class Database{
 
@@ -36,6 +37,50 @@ class Database{
 			die('ERROR: '.$e->getMessage());
 		}
 	}
+
+	//Método que executa query no banco
+	public function execute($query,$params = []){
+		try{
+			$statement = $this->connection->prepare($query);
+			$statement->execute($params);
+			return $statement;
+		}catch(PDOException $e){
+			die('ERROR: '.$e->getMessage());
+		}
+	}
+
+	//Método que insere dados
+	public function insert($values){
+		//Dados da query
+		$fields = array_keys($values);
+		$binds = array_pad([],count($fields),'?');
+		//Monta a query
+		$query = 'INSERT INTO '.$this->table.' ('.implode(',',$fields).') VALUES ('.implode(',',$binds).')';
+
+		//Executa o insert
+		$this->execute($query,array_values($values));
+
+		//Retorna o id inserido
+		return $this->connection->lastInsertId();
+	}
+
+	//Método que faz consulta no banco
+	public function select($where = null, $order = null, $limit = null){
+		//Dados da query
+		$where = strlen($where) ? 'WHERE '.$where : '';
+		$order = strlen($order) ? 'ORDER BY '.$order : '';
+		$limit = strlen($limit) ? 'LIMIT '.$limit : '';
+
+		//Monta a query
+		$query = 'SELECT * FROM '.$this->table.''.$where.''.$order.''.$limit;
+
+		//Executa
+		return $this->execute($query);
+	}
+
+
+
+
 }
 
 
