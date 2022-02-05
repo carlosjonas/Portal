@@ -13,7 +13,8 @@ if (isset($_POST['titulo'],$_POST['descricao'],$_POST['ativo'])) {
 	$noticia->ativo = $_POST['ativo'];
 	$noticia->cadastrar();
 
-	echo "<pre>"; print_r($noticia); echo "</pre>"; exit;
+	header('location: index.php?status=success');
+	exit;
 
 }
 
