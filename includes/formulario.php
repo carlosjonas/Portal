@@ -6,7 +6,7 @@
 		</a>
 	</section>
 
-	<h2 class="mt-3">Cadastrar Notícia</h2>
+	<h2 class="mt-3"><?=TITLE;?></h2>
 
 	<form method="POST" enctype="multipart/form-data">
 		
