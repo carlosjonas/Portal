@@ -4,12 +4,6 @@ require __DIR__.'/vendor/autoload.php';
 
 use \App\Entity\Noticia;
 
-/*/Validação do id
-if (!isset($_GET['id']) or !is_numeric($_GET['id'])) {
-	header('location: index.php?status=error');
-	exit;
-}*/
-
 //Consulta a notícia
 $noticia = Noticia::getNoticia($_GET['id']);
 
