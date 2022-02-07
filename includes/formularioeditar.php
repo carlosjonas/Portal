@@ -28,16 +28,19 @@
 		<div class="form-group">
 			<label>Status</label>
 			<div>
-				<div class="form-check form-check-inline">
-					<label class="form-control">
-						<input type="radio" name="ativo" value="s" checked> Ativo
-					</label>
-				</div>
-
-				<div class="form-check form-check-inline">
-					<label class="form-control">
-						<input type="radio" name="inativo" value="n" <?= $noticia->ativo == 'n' ? 'checked' : ''?>> Inativo
-					</label>
+				<div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="ativo" id="ativo" value="s">
+					  <label class="form-check-label" for="ativo">
+					    Ativo
+					  </label>
+					</div>
+					<div class="form-check">
+					  <input class="form-check-input" type="radio" name="inativo" id="inativo" value="n" <?= $noticia->ativo == 'n' ? 'checked' : ''?>>
+					  <label class="form-check-label" for="inativo">
+					    Inativo
+					  </label>
+					</div>
 				</div>
 			</div>
 
