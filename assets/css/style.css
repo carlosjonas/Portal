@@ -1,0 +1,32 @@
+.container-fluid{
+	padding: 0;
+}
+
+h1{
+	padding-top: 5px;
+	
+}
+
+img{
+	width: 100%;
+	height: 100%;
+}
+
+#info_noticia{
+	height: 75%;
+}
+
+#excluir_vaga{
+	width: 1000px;
+}
+
+#footer{
+	margin-top: 60px;
+}
+#frase_footer{
+	margin-bottom: 0;
+}
+
+#slogan{
+	padding-bottom: 5px;
+}
