@@ -4,11 +4,14 @@
 			if (isset($_GET['status'])) {
 				switch ($_GET['status']) {
 					case 'success':
-						$mensagem= '<div class="alert alert-success">Ação executada com sucesso!</div>';
+						$mensagem= '<div class="alert alert-success id="alert" alert-dismissible">Ação executada com sucesso!
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>';
 						break;
-					
 					case 'error':
-						$mensagem= '<div class="alert alert-danger">Ação não executada!</div>';
+						$mensagem= '<div class="alert alert-danger alert-dismissible">Ação não executada!<
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+									/div>';
 						break;
 				}
 			}
