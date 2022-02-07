@@ -29,14 +29,14 @@
 			<label>Status</label>
 			<div>
 				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="ativo" id="ativo" value="s">
+				  <input class="form-check-input" type="radio" name="ativo" id="ativo" value="s" checked>
 				  <label class="form-check-label" for="ativo">
 				    Ativo
 				  </label>
 				</div>
 				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="inativo" id="inativo" value="n">
-				  <label class="form-check-label" for="inativo">
+				  <input class="form-check-input" type="radio" name="ativo" id="inativo" value="n">
+				  <label class="form-check-label" for="ativo">
 				    Inativo
 				  </label>
 				</div>
