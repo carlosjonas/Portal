@@ -1,4 +1,4 @@
-<main>
+<main id="excluir_vaga">
 	
 	<h2 class="mt-3">Excluir Vaga</h2>
 
