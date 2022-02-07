@@ -29,6 +29,7 @@ class Noticia{
 		//Inserir a noticia no banco
 		$database = new DataBase('noticias');
 		$this->id = $database->insert([
+			'imagem' => $this->imagem,
 			'titulo' => $this->titulo,
 			'descricao' => $this->descricao,
 			'ativo' => $this->ativo,
@@ -52,6 +53,7 @@ class Noticia{
 	//Método de atualização de dados da notícia
 	public function atualizar(){
 		return (new DataBase('noticias'))->update('id = '.$this->id,[
+			'imagem' => $this->imagem,
 			'titulo' => $this->titulo,
 			'descricao' => $this->descricao,
 			'ativo' => $this->ativo,

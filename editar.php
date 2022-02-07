@@ -24,6 +24,12 @@ if(!$noticia instanceof Noticia){
 // Validação de campos do formulário 
 if (isset($_POST['titulo'],$_POST['descricao'],$_POST['ativo'])) {
 
+	$dir = "image/";
+	$file = $_FILES['imagem'];
+	$destino = "$dir".$file['name'];
+	move_uploaded_file($file['tmp_name'],$destino);
+
+	$noticia->imagem = $destino;
 	$noticia->titulo = $_POST['titulo'];
 	$noticia->descricao = $_POST['descricao'];
 	$noticia->ativo = $_POST['ativo'];

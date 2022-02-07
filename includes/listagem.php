@@ -26,10 +26,9 @@
 			$resultados = strlen($resultados) ? $resultados : '<p>Nenhuma Nótícia publicada!</p>';
 			foreach ($noticia as $noticias):
 		?>	
-			<?= $resultados; ?>
 			
 			<div class="card mb-3 mt-3">
-			  <img src="..." class="card-img-top" alt="...">
+			  <img src="<?= $noticias->imagem ;?>" class="card-img-top">
 			  <div class="card-body text-dark">
 			    <h5 class="card-title">
 			    	<?= $noticias->id ;?> - <?= $noticias->titulo ;?>

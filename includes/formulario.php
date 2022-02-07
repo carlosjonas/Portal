@@ -12,17 +12,17 @@
 		
 		<div class="form-group">
 			<label>Imagem da notícia</label>
-			<input type="file" class="form-control" name="imagem">
+			<input type="file" class="form-control" id="imagem" name="imagem" required>
 		</div>
 
 		<div class="form-group">
 			<label>Título</label>
-			<input type="text" class="form-control" name="titulo">
+			<input type="text" class="form-control" name="titulo" required>
 		</div>
 
 		<div class="form-group">
 			<label>Descrição</label>
-			<textarea class="form-control" name="descricao" rows="5"></textarea>
+			<textarea class="form-control" name="descricao" rows="5" required></textarea>
 		</div>
 
 		<div class="form-group">
