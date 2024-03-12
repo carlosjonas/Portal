@@ -1,0 +1,93 @@
+body {
+			overflow-x: hidden;
+            padding-top: 10px;
+            padding-bottom: 40px;
+            background-color: #eee;
+            background-image: url(../../imagens/fundo2claro.png);
+            background-repeat: repeat;
+            background-size: cover;
+        }
+
+        .double-input .form-control {
+            width: 50%;
+            border-right-width: 0px;
+        }
+
+        .double-input .form-control:focus {
+            border-right-width: 1px;
+        }
+
+        .triple-input .form-control {
+            width: 33.3%;
+            border-right-width: 0px;
+        }
+
+        .triple-input .form-control:focus {
+            border-right-width: 1px;
+        }
+
+        .verticalLine {
+            border-right: 1px solid #9e9e9e;
+        }
+
+        .btn-store {
+            color: #777777;
+            padding: 0 0 0 0;
+        }
+
+        .btn-store:focus,
+        .btn-store:hover {
+            color: #ffffff !important;
+            background-color: #168eea;
+            border-color: #168eea !important;
+        }
+
+        .btn-store .btn-label,
+        .btn-store .btn-caption {
+            display: block;
+            text-align: left;
+            line-height: 1;
+        }
+
+        #img {
+            position: relative;
+        }
+
+        #image {
+            position: absolute;
+            left: 104px;
+        }
+
+        #imagelogo {
+            position: absolute;
+            margin: 11px 0 0 119px;
+        }
+
+        .img-responsive{
+            margin-right: 50px;
+            float: right;
+            width: 300px;
+            height: 300px;
+        }
+        .colunaInput{
+            margin-left: 50px;
+            width: 20%;
+        }
+        .btnSuccess{
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        .divInputs{
+            margin-bottom: 10px;
+        }
+        .divBtnSuccess{
+            padding: 0 0 0 0;
+        }
+
+        #texto {
+            position: absolute;
+            font-size: 32px;
+            left: 162px;
+            top: 300px;
+            font-size: 18pt;
+        }
