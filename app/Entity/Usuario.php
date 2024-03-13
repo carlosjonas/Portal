@@ -39,7 +39,7 @@ class Usuario{
             'email' => $this->email,
             'rg' => $this->rg,
             'cpf' => $this->cpf,
-            'senha' => $this->senha,
+            'senha' => password_hash($this->senha,PASSWORD_DEFAULT),
 			'imagem' => $this->imagem,
 			'tipo' => $this->tipo,
 			'data' => $this->data,
@@ -50,8 +50,13 @@ class Usuario{
 	}
 
 	//Método que retorna as notícias do banco
-	public static function getNoticias($where = null, $order = null, $limit = null){
-		return (new DataBase('noticias'))->select($where,$order,$limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+	public static function getUsuarios($where = null, $order = null, $limit = null){
+		return (new DataBase('usuarios'))->select($where,$order,$limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+	}
+
+	//Método que retorna usuário com o email
+	public static function getUsuario($email){
+		return (new DataBase('usuarios'))->select('email = "'.$email.'"')->fetchObject(self::class);
 	}
 
 	//Método que retorna notícia com o id
