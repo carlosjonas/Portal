@@ -8,7 +8,7 @@ use \App\Entity\Usuario;
 $usuario = new Usuario();
 
 // Validação de campos do formulário 
-if (isset($_POST['nome'],$_POST['email'],$_POST['rg'],$_POST['cpf'],$_POST['senha'])) {
+if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
 
 
 	//Definindo a imagem da notícia
@@ -32,8 +32,9 @@ if (isset($_POST['nome'],$_POST['email'],$_POST['rg'],$_POST['cpf'],$_POST['senh
 	$usuario->cadastrar();
 
 	header('location: index.php?status=success');
-	exit;
 
+}else{
+    header('location: index.php?status=error');
 }
 
 include __DIR__.'/includes/header.php';

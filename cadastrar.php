@@ -24,7 +24,7 @@ if (isset($_POST['titulo'],$_POST['descricao'],$_POST['ativo'])) {
 	$noticia->ativo = $_POST['ativo'];
 	$noticia->cadastrar();
 
-	header('location: index.php?status=success');
+	header('location: home.php?status=success');
 	exit;
 
 }
