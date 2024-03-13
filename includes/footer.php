@@ -13,27 +13,25 @@
                 <div class="me-5 d-none d-lg-block">
                   <span>Conecte-se conosco nas redes sociais:</span>
                 </div>
-                <!-- Left -->
-                <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
                 <!-- Facebook -->
-            <a class="btn btn-primary" style="background-color: #3b5998;" href="https://www.facebook.com/OPOVO" role="button"
-            ><i class="fab fa-facebook-f"></i
-            ></a>
+            <a class="btn btn-primary" style="background-color: #3b5998;" href="https://www.facebook.com/OPOVO" role="button">
+              <i class="bi bi-facebook"></i>
+            </a>
 
             <!-- Twitter -->
-            <a class="btn btn-primary" style="background-color: #55acee;" href="https://twitter.com/opovo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" role="button"
-            ><i class="fab fa-twitter"></i
-            ></a>
+            <a class="btn btn-primary" style="background-color: #55acee;" href="https://twitter.com/opovo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" role="button">
+              <i class="bi bi-twitter-x"></i>
+            </a>
 
             <!-- Google -->
-            <a class="btn btn-primary" style="background-color: #dd4b39;" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiR0N60ju71AhWLEbkGHYafDPYQFnoECAwQAQ&url=https%3A%2F%2Fwww.opovo.com.br%2F&usg=AOvVaw2ceJHALrC7ntd4csfIvUeE" role="button"
-            ><i class="fab fa-google"></i
-            ></a>
+            <a class="btn btn-primary" style="background-color: #dd4b39;" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiR0N60ju71AhWLEbkGHYafDPYQFnoECAwQAQ&url=https%3A%2F%2Fwww.opovo.com.br%2F&usg=AOvVaw2ceJHALrC7ntd4csfIvUeE" role="button">
+              <i class="bi bi-google"></i>
+            </a>
 
             <!-- Instagram -->
-            <a class="btn btn-primary" style="background-color: #ac2bac;" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwi62by9ju71AhX0ILkGHXGJAEwQFnoECAQQAQ&url=https%3A%2F%2Fwww.instagram.com%2Fopovoonline%2F%3Fhl%3Dpt-br&usg=AOvVaw2nYcuheHBck4TCHu62mba5" role="button"
-            ><i class="fab fa-instagram"></i
-            ></a>
+            <a class="btn btn-primary" style="background-color: #ac2bac;" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwi62by9ju71AhX0ILkGHXGJAEwQFnoECAQQAQ&url=https%3A%2F%2Fwww.instagram.com%2Fopovoonline%2F%3Fhl%3Dpt-br&usg=AOvVaw2nYcuheHBck4TCHu62mba5" role="button">
+              <i class="bi bi-instagram"></i>
+            </a>
 
 
                 <!-- Right -->
@@ -83,7 +81,7 @@
 
               <!-- Copyright -->
               <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-                © 2021 Copyright:
+                © 2024 Copyright:
                 <a class="text-reset fw-bold" href="index.php">portalnoticias.com</a>
               </div>
               <!-- Copyright -->
@@ -96,9 +94,6 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <!-- Link FontAwesome -->
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <!-- Scripts -->
     <script src="assets/script/scripts.js"></script>

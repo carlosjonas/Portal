@@ -27,12 +27,12 @@
 
         <div class="form-group">
 			<label for="rg">Rg</label>
-			<input type="text" class="form-control" name="rg">
+			<input type="text" class="form-control" name="rg" id="rg">
 		</div>
 
         <div class="form-group">
 			<label for="cpf">Cpf *</label>
-			<input type="text" class="form-control" name="cpf" required>
+			<input type="text" class="form-control" name="cpf" id="cpf" required>
 		</div>
 
         <div class="form-group">
@@ -54,8 +54,8 @@
 </main>
 
 <script>
-    $(document).ready(function(){
-        $('.cpf').mask('000.000.000-00', {reverse: true});
-        $('.rg').mask('0000000000-0', {reverse: true});
+	$(document).ready(function() {
+        $('#cpf').mask('000.000.000-00');
+        $('#rg').mask('0000000000-0');
     });
 </script>
