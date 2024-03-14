@@ -54,7 +54,7 @@
                         <i class="fas fa-gem me-3"></i>Portal de Notícias
                       </h6>
                       <p>
-                        Aqui você acompanha as principais notícias do que acontece no mundo, tudo feito com muito carinho e responsabilidade em levar notícias de qualidade 
+                        Aqui você acompanha as principais notícias do que acontecem no mundo, tudo feito com muito carinho e responsabilidade em levar notícias de qualidade.
                       </p>
                     </div>
                     <!-- Grid column -->
@@ -90,11 +90,10 @@
             </section>
         </div>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <!-- JavaScript do Bootstrap (opcional, mas necessário para componentes interativos) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
     <!-- Scripts -->
     <script src="assets/script/scripts.js"></script>
 
