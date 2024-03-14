@@ -23,6 +23,14 @@
 </head>
 
 <body class="bg-dark text-light">
+
+	<div class="container-fluid p-0">
+      <div class="jumbotron bg-primary">
+        <h1 class="h1 text-center">Portal de Notícias</h1>
+        <p id="slogan" class="text text-center">Seu portal favorito de notícias do dia a dia</p>
+      </div>
+    </div>
+
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-6">
@@ -53,11 +61,7 @@
         <div class="justify-content-center" style="margin-top: 150px;">
             
             <form name="formindex2" class="form-signin" role="form" method="post" action="acesso.php">
-                <div class="row justify-content-center text-center mb-3">
-					<div class="col-6 "> 
-                        <h2>Portal de Notícias</h2>
-                    </div>
-			    </div>
+                
 				<div class="row">
 					<div class="col-6 verticalLine align-self-end">
 						<div>
