@@ -30,3 +30,23 @@ img{
 #slogan{
 	padding-bottom: 5px;
 }
+
+.navbarIcon{
+	width: 60px;
+    height: 50px;
+}
+
+.logoNav{
+	width: 60px;
+    height: 60px;
+}
+
+.fotoNav{
+	width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.nomeNav{
+	margin-right: 15px;
+}
