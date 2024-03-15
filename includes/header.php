@@ -1,18 +1,23 @@
 <?php
 
   session_start();
-  if(!$_SESSION['nome']){
+  if(!$_SESSION['id']){
     header("Location: index.php");
     exit;
   }
 
-  $nome   = $_SESSION['nome'];
-  $id     = $_SESSION['id'];
-  $foto   = $_SESSION['foto'];
-  $email  = $_SESSION['email'];
-  $tipo   = $_SESSION['tipo'];
-  $rg   = $_SESSION['rg'];
-  $cpf   = $_SESSION['cpf'];
+  use \App\Entity\Usuario;
+
+  //Consulta o usuário
+  $usuario = Usuario::getUsuarioById($_SESSION['id']);
+
+  $nome   = $usuario->nome;
+  $id     = $usuario->id;
+  $foto   = $usuario->imagem;
+  $email  = $usuario->email;
+  $tipo   = $usuario->tipo;
+  $rg     = $usuario->rg;
+  $cpf    = $usuario->cpf;
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +69,7 @@
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Perfil</a></li>
+              <li><a class="dropdown-item" href="logout.php">Editar Senha</a></li>
               <li><a class="dropdown-item" href="logout.php">Sair</a></li>
             </ul>
           </div>
@@ -80,7 +86,7 @@
       <div class="modal-content bg-dark">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Perfil</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="container-fluid">
@@ -96,7 +102,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" href="editarUsuario.php" class="btn btn-primary">Editar</button>
+          <a href="editarUsuario.php?id=<?=$id?>" class="btn btn-primary">Editar</a>
         </div>
       </div>
     </div>
