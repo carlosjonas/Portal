@@ -2,7 +2,7 @@
 	
 	<section class="mt-3">
 		<a href="home.php">
-			<button class="btn btn-success">Voltar</button>
+			<button class="btn corSite text-light"><i class="bi bi-arrow-left"></i></button>
 		</a>
 	</section>
 

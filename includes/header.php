@@ -41,10 +41,10 @@
   </head>
   <body class="bg-dark text-light">
     <div>
-  <nav class="navbar navbar-expand-lg text-light bg-primary">
+  <nav class="navbar navbar-expand-lg text-light corSite">
     <div class="container-fluid">
       <a class="navbar-brand text-light ms-3" href="home.php">
-        <img class="logoNav" src="assets/img/logo.png">
+        <img class="logoNav me-3" src="assets/img/logo.png">
         Portal de Notícias
       </a>
       <button class="navbar-toggler text-light me-3 navbarIcon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">

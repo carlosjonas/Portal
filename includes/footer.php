@@ -1,7 +1,7 @@
     <!-- Classe container abaixo do body -->
     </div>
     <div class="container-fluid">
-        <div class="jumbotron bg-primary text-light" id="footer">
+        <div class="jumbotron corSite text-light" id="footer">
             <section style="margin-top: 50px;">
                 <!-- Footer -->
             <footer class="text-center   ">

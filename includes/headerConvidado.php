@@ -19,7 +19,7 @@
   </head>
   <body class="bg-dark text-light">
     <div class="container-fluid p-0">
-      <div class="jumbotron bg-primary">
+      <div class="jumbotron corSite">
         <h1 class="h1 text-center">Portal de Notícias</h1>
         <p id="slogan" class="text text-center">Seu portal favorito de notícias do dia a dia</p>
       </div>
