@@ -3,9 +3,9 @@
 
 <main>
 	
-	<section>
-		<a href="index.php">
-			<button class="btn btn-success">Voltar</button>
+	<section class="mt-3">
+		<a title="voltar" href="home.php">
+			<button class="btn btn-success"><i class="bi bi-arrow-left"></i></button>
 		</a>
 	</section>
 
@@ -17,37 +17,39 @@
 
 		<div class="form-group">
 			<label for="nome">Nome *</label>
-			<input type="text" class="form-control" name="nome" required>
+			<input type="text" class="form-control" name="nome" value="<?= $usuario->nome;?>" required>
 		</div>
 
 		<div class="form-group">
 			<label for="email">Email *</label>
-			<input type="email" class="form-control" name="email" required>
+			<input type="email" class="form-control" name="email" value="<?= $usuario->email;?>" required>
 		</div>
 
         <div class="form-group">
 			<label for="rg">Rg</label>
-			<input type="text" class="form-control" name="rg" id="rg">
+			<input type="text" class="form-control" name="rg" value="<?= $usuario->rg;?>" id="rg">
 		</div>
 
         <div class="form-group">
 			<label for="cpf">Cpf *</label>
-			<input type="text" class="form-control" name="cpf" id="cpf" required>
+			<input type="text" class="form-control" name="cpf" id="cpf" value="<?= $usuario->cpf;?>" required>
 		</div>
 
-        <div class="form-group">
-			<label for="senha">Senha *</label>
-			<input type="text" class="form-control" name="senha" required>
-		</div>
+		<?php if(!isset($usuario->senha)){ ?>
+			<div class="form-group">
+				<label for="senha">Senha *</label>
+				<input type="text" class="form-control" name="senha" value="<?= $usuario->senha;?>" required>
+			</div>
+		<?php } ?>
 
         <div class="form-group">
 			<label for="imagem">Imagem do Usuário</label>
-			<input type="file" class="form-control" id="imagem" name="imagem">
+			<input type="file" class="form-control" id="imagem" value="<?= $usuario->imagem;?>" name="imagem">
 		</div>
 
 		<div class="form-group mt-3">
 			<div class="form-group">
-				<button type="submit" class="btn btn-success">Enviar</button>
+				<button type="submit" class="btn btn-success"><i class="bi bi-floppy"></i></button>
 			</div>
 		</div>
 	</form>
