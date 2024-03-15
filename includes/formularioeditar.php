@@ -1,7 +1,7 @@
 <main>
 	
-	<section>
-		<a href="index.php">
+	<section class="mt-3">
+		<a href="home.php">
 			<button class="btn btn-success">Voltar</button>
 		</a>
 	</section>
