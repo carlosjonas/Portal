@@ -60,24 +60,24 @@ class Usuario{
 	}
 
 	//Método que retorna notícia com o id
-	public static function getNoticia($id){
-		return (new DataBase('noticias'))->select('id = '.$id)->fetchObject(self::class);
+	public static function getUsuarioById($id){
+		return (new DataBase('usuarios'))->select('id = '.$id)->fetchObject(self::class);
 	}
 
 	//Método de atualização de dados da notícia
 	public function atualizar(){
-		return (new DataBase('noticias'))->update('id = '.$this->id,[
+		return (new DataBase('usuarios'))->update('id = '.$this->id,[
 			'imagem' => $this->imagem,
-			'titulo' => $this->titulo,
-			'descricao' => $this->descricao,
-			'ativo' => $this->ativo,
-			'data' => $this->data,
+			'nome' => $this->nome,
+			'rg' => $this->rg,
+			'cpf' => $this->cpf,
+			'email' => $this->email,
 		]);
 	}
 
 	//Método de exclusão de notícia
 	public function excluir(){
-		return (new DataBase('noticias'))->delete('id = '.$this->id);
+		return (new DataBase('usuarios'))->delete('id = '.$this->id);
 	}
 }
 
