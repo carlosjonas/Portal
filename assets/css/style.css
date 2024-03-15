@@ -1,3 +1,35 @@
+/*NAVBAR*/
+.navbarIcon{
+	width: 60px;
+    height: 50px;
+}
+
+.logoNav{
+	width: 60px;
+    height: 60px;
+}
+
+.fotoNav{
+	width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.nomeNav{
+	margin-right: 15px;
+}
+/*FIM NAVBAR*/
+
+/*BODY*/
+.corSite{
+	background-color: rgb(85, 85, 255);
+}
+
+
+.linkCardNoticia{
+	text-decoration: none;
+}
+
 .container-fluid{
 	padding: 0;
 }
@@ -19,7 +51,9 @@ img{
 #excluir_vaga{
 	width: 1000px;
 }
+/*FIM BODY*/
 
+/*FOOTER*/
 #footer{
 	margin-top: 60px;
 }
@@ -30,23 +64,4 @@ img{
 #slogan{
 	padding-bottom: 5px;
 }
-
-.navbarIcon{
-	width: 60px;
-    height: 50px;
-}
-
-.logoNav{
-	width: 60px;
-    height: 60px;
-}
-
-.fotoNav{
-	width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-
-.nomeNav{
-	margin-right: 15px;
-}
+/*FIM FOOTER*/
