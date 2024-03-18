@@ -65,15 +65,23 @@ class Database{
 	}
 
 	//Método que faz consulta no banco
-	public function select($where = null, $order = null, $limit = null){
+	public function select($where = null, $order = null, $limit = null,$query = null){
 		//Dados da query
 		$where = strlen($where) ? ' WHERE '.$where : '';
 		$order = strlen($order) ? ' ORDER BY '.$order : '';
 		$limit = strlen($limit) ? ' LIMIT '.$limit : '';
 
 		//Monta a query
-		$query = 'SELECT * FROM '.$this->table.''.$where.''.$order.''.$limit;
+		if($query == null){
+			$query = 'SELECT * FROM '.$this->table.''.$where.''.$order.''.$limit;
+		}
 
+		//Executa
+		return $this->execute($query);
+	}
+
+	//Método que faz consulta personalizada no banco
+	public function selectPersonalizado($query){
 		//Executa
 		return $this->execute($query);
 	}
