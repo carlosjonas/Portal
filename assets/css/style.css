@@ -54,6 +54,20 @@ img{
 }
 /*FIM BODY*/
 
+/*COMENTÁRIO*/
+.inputComentario{
+	resize: none;
+}
+.divComentario{
+	width: 100%;
+}
+.imagemComentario{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+}
+/*FIM COMENTÁRIO*/
+
 /*FOOTER*/
 #footer{
 	margin-top: 60px;
