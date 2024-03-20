@@ -30,14 +30,14 @@ if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
         $usuario->tipo = 'l';
         $usuario->cadastrar();
 
-        header('location: index.php?status=success');
+        header('location: login.php');
 
     }catch(Exception $e){
-        header('location: index.php?status=error');
+        header('location: login.php?status=error');
     }
 }
 
-include __DIR__.'/includes/headerConvidado.php';
+include __DIR__.'/includes/header.php';
 include __DIR__.'/includes/formularioUsuarios.php';
 include __DIR__.'/includes/footer.php';
 

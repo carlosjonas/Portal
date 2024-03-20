@@ -1,23 +1,19 @@
 <?php
 
-  session_start();
-  if(!$_SESSION['id']){
-    header("Location: index.php");
-    exit;
-  }
-
   use \App\Entity\Usuario;
 
   //Consulta o usuário
-  $usuario = Usuario::getUsuarioById($_SESSION['id']);
+  if(isset($_SESSION['id'])){
+    $usuario = Usuario::getUsuarioById($_SESSION['id']);
 
-  $nome   = $usuario->nome;
-  $id     = $usuario->id;
-  $foto   = $usuario->imagem;
-  $email  = $usuario->email;
-  $tipo   = $usuario->tipo;
-  $rg     = $usuario->rg;
-  $cpf    = $usuario->cpf;
+    $nome   = $usuario->nome;
+    $id     = $usuario->id;
+    $foto   = $usuario->imagem;
+    $email  = $usuario->email;
+    $tipo   = $usuario->tipo;
+    $rg     = $usuario->rg;
+    $cpf    = $usuario->cpf;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +32,7 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleLogin.css">
 
     <title>Portal de Notícias</title>
   </head>
@@ -43,7 +40,7 @@
     <div>
       <nav class="navbar navbar-expand-lg text-light corSite">
         <div class="container-fluid">
-          <a class="navbar-brand text-light ms-3" href="home.php">
+          <a class="navbar-brand text-light ms-3" href="index.php">
             <img class="logoNav me-3" src="assets/img/logo.png">
             Portal de Notícias
           </a>
@@ -53,7 +50,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-light active" aria-current="page" href="home.php">Notícias</a>
+                <a class="nav-link text-light active" aria-current="page" href="index.php">Notícias</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
@@ -63,17 +60,26 @@
               </li>
             </ul>
             <form class="d-flex align-items-center me-3" role="search">
-              <div class="dropdown text-light me-4">
-                <button class="btn dropdown-toggle text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <?=$nome;?>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Perfil</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Editar Senha</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Sair</a></li>
-                </ul>
-              </div>
-              <img class="fotoNav" src="<?=$foto;?>" onerror="this.src='image/usuarioDefault.png'" alt="Foto de <?=$nome;?>" oneerror>
+              <?php if(isset($_SESSION['id'])){ ?>
+                <div class="dropdown text-light me-4">
+                  
+                  <button class="btn dropdown-toggle text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?=$nome;?>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Perfil</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Editar Senha</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+                  </ul>
+                </div>
+                <img class="fotoNav" src="<?=$foto;?>" onerror="this.src='image/usuarioDefault.png'" alt="Foto de <?=$nome;?>" oneerror>
+              <?php }else{ ?>
+                <div class="dropdown text-light me-4">
+                  <a href="login.php" class="btn text-light" type="button">
+                    Entrar
+                  </a>
+                </div>
+              <?php } ?>
             </form>
           </div>
         </div>
