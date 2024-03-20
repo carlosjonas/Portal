@@ -24,7 +24,7 @@
 		<?= $mensagem; ?>
 		<?php if($tipo != "l"){ ?>
 			<a href="cadastrar.php">
-				<button class="btn btn-success">Nova Notícia</button>
+				<button class="btn corSite text-light" title="Nova Notícia"><i class="bi bi-plus-lg"></i></button>
 			</a>
 		<?php } ?>
 	</section>
@@ -48,14 +48,18 @@
 							<div class="card-body text-dark" id="info_noticia">
 								<h5 class="card-title row" style="min-height:80px"><?= $noticias->titulo ;?></h5>
 								<p class="card-text row"><small class="text-muted p-0"><?= date('d/m/Y',strtotime($noticias->data)) ;?></small></p>
-								<?php if($tipo != "l"){ ?>
+								<?php if(isset($tipo)){ 
+										if($tipo != "l"){
+								?>
 									<a href="editar.php?id='<?= $noticias->id ;?>'">
 										<button type="button" class="btn btn-primary">Editar</button>
 									</a>
 									<a href="excluir.php?id='<?= $noticias->id ;?>'">
 										<button type="button" class="btn btn-danger">Excluir</button>
 									</a>
-								<?php } ?>
+								<?php }
+										} 
+								?>
 							</div>
 						</div>
 					</div>
