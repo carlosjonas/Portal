@@ -40,30 +40,26 @@ class Comentario{
 		return true;
 	}
 
-	//Método que retorna as notícias do banco
+	//Método que retorna os comentários do banco
 	public static function getComentarios($where = null, $order = null, $limit = null,$query = null){
 		return (new DataBase('comentarios'))->select($where,$order,$limit,$query)->fetchAll(PDO::FETCH_CLASS, self::class);
 	}
 
-	//Método que retorna notícia com o id
-	public static function getNoticia($id){
+	//Método que retorna comentário com o id
+	public static function getComentario($id){
 		return (new DataBase('comentarios'))->select('id = '.$id)->fetchObject(self::class);
 	}
 
-	//Método de atualização de dados da notícia
-	public function atualizar(){
-		return (new DataBase('comentarios'))->update('id = '.$this->id,[
-			'imagem' => $this->imagem,
-			'titulo' => $this->titulo,
-			'descricao' => $this->descricao,
-			'ativo' => $this->ativo,
-			'data' => $this->data,
+	//Método de atualização de dados da comentário
+	public function atualizar($id,$comentario){
+		return (new DataBase('comentarios'))->update('id = '.$id,[
+			'comentario' => $comentario
 		]);
 	}
 
-	//Método de exclusão de notícia
-	public function excluir(){
-		return (new DataBase('comentarios'))->delete('id = '.$this->id);
+	//Método de exclusão de comentário
+	public function excluir($id){
+		return (new DataBase('comentarios'))->delete('id = '.$id);
 	}
 }
 
