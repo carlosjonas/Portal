@@ -4,9 +4,7 @@
 <main>
 	
 	<section class="mt-3">
-		<a title="voltar" href="login.php">
-			<button class="btn corSite text-light"><i class="bi bi-arrow-left"></i></button>
-		</a>
+		<a title="voltar" href="<?= (isset($tipo) && $tipo !='l' ? 'usuarios.php' : 'login.php')?>" class="btn corSite text-light"><i class="bi bi-arrow-left"></i></a>
 	</section>
 
 	<div class="card mt-3">
