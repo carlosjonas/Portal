@@ -2,6 +2,8 @@
 
   use \App\Entity\Usuario;
 
+  session_start();
+
   //Consulta o usuário
   if(isset($_SESSION['id'])){
     $usuario = Usuario::getUsuarioById($_SESSION['id']);
@@ -60,8 +62,9 @@
               </li>
             </ul>
             <form class="d-flex align-items-center me-3" role="search">
+            <div class="dropdown text-light me-4">
+                
               <?php if(isset($_SESSION['id'])){ ?>
-                <div class="dropdown text-light me-4">
                   
                   <button class="btn dropdown-toggle text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?=$nome;?>
@@ -69,11 +72,15 @@
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Perfil</a></li>
                     <li><a class="dropdown-item" href="logout.php">Editar Senha</a></li>
+                    <?php if(isset($tipo) && $tipo != "l"){ ?>
+                      <li><a class="dropdown-item" href="usuarios.php">Lista de Usuários</a></li>
+                    <?php } ?>
                     <li><a class="dropdown-item" href="logout.php">Sair</a></li>
                   </ul>
                 </div>
                 <img class="fotoNav" src="<?=$foto;?>" onerror="this.src='image/usuarioDefault.png'" alt="Foto de <?=$nome;?>" oneerror>
               <?php }else{ ?>
+
                 <div class="dropdown text-light me-4">
                   <a href="login.php" class="btn text-light" type="button">
                     Entrar

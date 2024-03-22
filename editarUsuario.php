@@ -41,8 +41,10 @@
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['rg'] = $_POST['rg'];
             $_SESSION['cpf'] = $_POST['cpf'];
+
+            $link = (isset($tipo) && $tipo !='l' ? 'usuarios.php' : 'home.php');
             
-            header('location: home.php?status=success');
+            header("location: $link?status=success");
             exit;
 
         }catch(Exception $e){
