@@ -1,6 +1,6 @@
     
     <section class="mt-3">
-		<a href="home.php">
+		<a href="index.php">
 			<button class="btn corSite text-light"><i class="bi bi-arrow-left"></i></button>
 		</a>
 	</section>
@@ -22,7 +22,7 @@
                 <a onclick="cadastrarComentario()"  class="btn corSite mt-3">Comentar</a>
             </form>
             <?php }else{?>
-                <h5>Logue para comentar nesta notícia!</h5>
+                <h5 class="mt-5">Logue para comentar nesta notícia !</h5>
             <?php }?>
             <hr class="mt-3" />
             <h4 class="mt-3">Comentários:</h4>
@@ -61,10 +61,14 @@
         }
 
         function cadastrarComentario(){
+             <?php if(isset($_SESSION['id'])){ ?>
+                let idUsuario ="<?=$_SESSION['id']?>"
+             <?php } ?>
+            let idNoticia = <?=$_GET['id']?>;
+            console.log(idUsuario,idNoticia)
             textarea = document.getElementById("comentario");
             comentario = textarea.value
-            idUsuario = "<?=$_SESSION['id']?>";
-            idNoticia = "<?=$_GET['id']?>";
+            
             if(comentario !=""){
                 url = "./Controller/comentario_controller.php?action=cadastrarComentario&idUsuario="+idUsuario+"&comentario="+comentario+"&idNoticia="+idNoticia;
                 const xhttp = new XMLHttpRequest();
@@ -131,10 +135,15 @@
                             txt +='   </div>'
                             txt +='     <div class="ms-2">'
                             txt +='        <span class="badge corSite text-dark rounded-pill">'+data+'</span>'
-                            txt +='            <div class="mt-2">'
-                            txt +='                <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>'
-                            txt +='                <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,'+comentario.id+')"><i class="bi bi-trash"></i></a>'
-                            txt +='            </div>'
+                            <?php if(isset($_SESSION['id'])){?>
+                                idUsuario = "<?= $_SESSION['id']; ?>";
+                                if(idUsuario == comentario.idUsuario){
+                                    txt +='<div class="mt-2">'
+                                    txt +=' <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>'
+                                    txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,'+comentario.id+')"><i class="bi bi-trash"></i></a>'
+                                    txt +='</div>'
+                                }
+                            <?php } ?>
                             txt +='     </div>'
                             txt +='</li>'
                         });

@@ -10,9 +10,10 @@ if(isset($_POST["email"])){
     
     if(password_verify($_POST['senha'],$usuario->senha)){
         $_SESSION['id'] = $usuario->id;
-        header('location: index.php');
+
+        header('Refresh: 0; url=index.php');
     }else{
-        header('location: index.php');
+        header('location: index.php?status=error');
     }
 }
 
