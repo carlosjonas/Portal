@@ -27,9 +27,11 @@
                 </div>
             </div>
         </section>
-    </main>[
+    </main>
     
     <script>
+        
+        idUsuario = <?= $_SESSION['id'];?>;
          window.onload = function () {
             getUsuarios();
         }
@@ -53,7 +55,7 @@
             // Atribuindo a response text a json para ficar mais semantico
             let json = JSON.parse(resposta);
 
-            //Inicializando o txt para receber a estrutura de card
+            //Inicializando o txt para receber a estrutura de tabela
             let txt = '';
 
             let lista = document.getElementById("tbody-usuarios")
@@ -61,7 +63,6 @@
             if (json == '' ) {
                 txt += '<h4 class="text-center">Nenhum comentário para essa notícia</h4>'
             }else if(json != '' ){
-                console.log(json)
                 json.forEach(function(usuario){
                     spliter = usuario.data.split(" ")
                     data = spliter[0]
@@ -77,12 +78,38 @@
                     txt += '    <th>' + dia + " às " + spliter[1] + '</th>'
                     txt += '    <th>'
                     txt += '        <a class="btn corSite" href="editarUsuario.php?id=' + usuario.id + '"><i class="bi bi-pencil"></i></a>'
-                    txt += '        <a class="btn corSite" href="excluirUsuario.php?id=' + usuario.id + '"><i class="bi bi-trash"></i></a>'
+                    if(idUsuario != usuario.id){
+                        txt += '    <a class="btn corSite" onclick="mostrarModalAviso(\'Tem certeza que deseja deletar este Usuário?\',false,\'deletarUsuario\',' + usuario.id + ')"><i class="bi bi-trash"></i></a>'
+                    }
                     txt += '    </th>'
                     txt += '</tr>'
                 });
 
             }
             lista.innerHTML = txt;
+        }
+
+        function deletarUsuario(id){
+            url = "./Controller/usuario_controller.php?action=deletarUsuario&id="+id;
+		    const xhttp = new XMLHttpRequest();
+		    xhttp.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    // Atribuindo a response text a json para ficar mais semantico
+                    try{
+                        let json = JSON.parse(this.responseText);
+                        if (json == true ) {
+                            mostrarModalAviso('Usuário deletado!',true);
+                            getUsuarios();
+
+                        }
+                    }catch(error){
+                        mostrarModalAviso('Erro ao deletar o usuário!',true);
+                        
+                    }
+                }
+		    }
+		    xhttp.open("GET", url);
+		    xhttp.send();
+
         }
     </script>

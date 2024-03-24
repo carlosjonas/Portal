@@ -9,7 +9,10 @@
         case "getUsuarios":
             $dao->getUsuarios();
         break;
-
+        
+        case "deletarUsuario":
+            $dao->deletarUsuario($_REQUEST['id']);
+        break;
         /*case "cadastrarComentario":
             $dao->cadastrarComentario($_REQUEST['idUsuario'],$_REQUEST['comentario'],$_REQUEST['idNoticia']);
         break;
@@ -18,8 +21,6 @@
             $dao->editarComentario($_REQUEST['id'],$_REQUEST['comentario']);
         break;
 
-        case "deletarComentario":
-            $dao->deletarComentario($_REQUEST['id']);
-        break;*/
+        */
     }
 ?>

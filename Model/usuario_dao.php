@@ -24,7 +24,21 @@
             echo $json;
         }
 
-        //Função que cadastra o comentário do usuário
+        //Função que deleta o usuário
+        public function deletarUsuario($id){
+            $usuario = Usuario::getUsuarioById($id);
+            if(!$usuario instanceof Usuario){
+                header('location: index.php?status=error');
+                exit;
+            }
+            
+            $usuario->excluir($id);
+            
+            $resposta = 'true'; 
+            echo $resposta;
+        }
+
+        /*/Função que cadastra o comentário do usuário
         public function cadastrarComentario($idUsuario,$comentarioUsuario,$idNoticia){
             $comentario = new Comentario();
             
@@ -57,18 +71,9 @@
             echo $resposta;
         }
 
-        //Função que altera o comentário do usuário
-        public function deletarComentario($id){
-            $comentarios = Comentario::getComentario($id);
-            if(!$comentarios instanceof Comentario){
-                header('location: index.php?status=error');
-                exit;
-            }
-            
-            $comentarios->excluir($id);
-            
-            $resposta = 'true'; 
-            echo $resposta;
-        }
+        
+        */
     }
+
+    
 ?>
