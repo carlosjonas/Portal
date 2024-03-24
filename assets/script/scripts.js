@@ -5,6 +5,8 @@ function mostrarModalAviso(texto,desaparecer,funcao,id){
     document.getElementById("paragrafoAviso").innerHTML= texto
 
     if(desaparecer == true){
+        btnAviso = document.getElementById("btnSalvarAviso")
+        btnAviso.style.display="none"
         setTimeout(() => {
             modal.style.display = 'none';
         }, 3000);
