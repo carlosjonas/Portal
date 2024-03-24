@@ -36,22 +36,18 @@
             $usuario->rg = $_POST['rg'];
             $usuario->cpf = $_POST['cpf'];
             if(isset($_POST['senha'])){
-                $usuario->senha = $_POST['senha'];
+                $usuario->senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
             }
             $usuario->atualizar();
 
-            $_SESSION['nome'] = $_POST['nome'];
-            $_SESSION['email'] = $_POST['email'];
-            $_SESSION['rg'] = $_POST['rg'];
-            $_SESSION['cpf'] = $_POST['cpf'];
-
-            $link = (isset($tipo) && $tipo !='l' ? 'usuarios.php' : 'home.php');
+            session_start();
+            $link = (isset($_SESSION['tipo']) && $_SESSION['tipo'] !='l' ? 'usuarios.php' : 'index.php');
             
             header("location: $link?status=success");
             exit;
 
         }catch(Exception $e){
-            header('location: home.php?status=error&tipo=erroEditarUsuario');
+            header("location: $link?status=error&tipo=erroEditarUsuario");
             exit;
         }
     }

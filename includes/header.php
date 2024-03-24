@@ -6,15 +6,17 @@
 
   //Consulta o usuário
   if(isset($_SESSION['id'])){
-    $usuario = Usuario::getUsuarioById($_SESSION['id']);
+    $usuarioLogado = Usuario::getUsuarioById($_SESSION['id']);
+    
+    $_SESSION['tipo'] = $usuarioLogado->tipo;
 
-    $nome   = $usuario->nome;
-    $id     = $usuario->id;
-    $foto   = $usuario->imagem;
-    $email  = $usuario->email;
-    $tipo   = $usuario->tipo;
-    $rg     = $usuario->rg;
-    $cpf    = $usuario->cpf;
+    $nome   = $usuarioLogado->nome;
+    $id     = $usuarioLogado->id;
+    $foto   = $usuarioLogado->imagem;
+    $email  = $usuarioLogado->email;
+    $tipo   = $usuarioLogado->tipo;
+    $rg     = $usuarioLogado->rg;
+    $cpf    = $usuarioLogado->cpf;
   }
 ?>
 
@@ -95,7 +97,7 @@
 
     <!-- Modal Perfil-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-centered">
+      <div class="modal-dialog modal-lg modal-centered text-light">
         <div class="modal-content bg-dark">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">Perfil</h1>
@@ -105,7 +107,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-4"><img class="imgPerfil" src="<?=$foto?>" onerror="this.src='image/usuarioDefault.png'"></div>
-                <div class="col-6 ms-2">
+                <div class="col-7 ms-2">
                   <div class="row"><h5> Nome: <?=$nome?> </h5></div>
                   <div class="row"><h5> Email: <?=$email?> </h5></div>
                   <div class="row"><h5> Rg: <?=$rg?> </h5></div>

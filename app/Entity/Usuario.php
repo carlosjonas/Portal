@@ -66,13 +66,26 @@ class Usuario{
 
 	//Método de atualização de dados da notícia
 	public function atualizar(){
-		return (new DataBase('usuarios'))->update('id = '.$this->id,[
+		$respostaDados = (new DataBase('usuarios'))->update('id = '.$this->id,[
 			'imagem' => $this->imagem,
 			'nome' => $this->nome,
 			'rg' => $this->rg,
 			'cpf' => $this->cpf,
 			'email' => $this->email,
 		]);
+
+		$repostaSenha = true;
+		//Se tiver senha por parte do coordenador, atualiza ela depois
+		//mudança para evitar um if na chave do update de cima que gera erro
+		if(isset($this->senha)){
+			$repostaSenha = (new DataBase('usuarios'))->update('id = '.$this->id,[
+				'senha' => $this->senha,
+			]);
+		}
+
+		if($repostaSenha == true && $respostaDados == true){
+			return true;
+		}
 	}
 
 	//Método de exclusão de notícia
