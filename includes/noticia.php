@@ -140,7 +140,7 @@
                                 if(idUsuario == comentario.idUsuario){
                                     txt +='<div class="mt-2">'
                                     txt +=' <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>'
-                                    txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,'+comentario.id+')"><i class="bi bi-trash"></i></a>'
+                                    txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,\'deletarComentario\','+comentario.id+')"><i class="bi bi-trash"></i></a>'
                                     txt +='</div>'
                                 }
                             <?php } ?>
@@ -212,26 +212,6 @@
 
         }
 
-        //Função que mostra o modal com um aviso
-        function mostrarModalAviso(texto,desaparecer,id){
-            modal = document.getElementById("my-modal")
-            modal.style.display = 'block';
-            document.getElementById("paragrafoAviso").innerHTML= texto
-
-            if(desaparecer == true){
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 3000);
-            }else{
-                btnAviso = document.getElementById("btnSalvarAviso")
-                btnAviso.style.display="block"
-                btnAviso.setAttribute("onclick", "deletarComentario("+id+")");
-
-            }
-        }
-
-
-
         //Função que muda o comentário para textarea
         function mudarParaParagrafo(id){
 
@@ -249,11 +229,5 @@
             btnEditar = document.getElementById("btnEditar"+id);
             btnEditar.innerHTML = '<i class="bi bi-pencil"></i>';
             btnEditar.setAttribute("onclick", "mudarParaTextarea("+id+")");
-        }
-
-        //função que faz o modal fechar ao clicar no btn-close
-        function fechaModal(){
-            modal = document.getElementById("my-modal")
-            modal.style.display = 'none';
         }
     </script>
