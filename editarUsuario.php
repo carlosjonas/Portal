@@ -35,6 +35,9 @@
             $usuario->email = $_POST['email'];
             $usuario->rg = $_POST['rg'];
             $usuario->cpf = $_POST['cpf'];
+            if(isset($_POST['senha'])){
+                $usuario->senha = $_POST['senha'];
+            }
             $usuario->atualizar();
 
             $_SESSION['nome'] = $_POST['nome'];

@@ -4,7 +4,7 @@
 <main>
 	
 	<section class="mt-3">
-		<a title="voltar" href="<?= (isset($tipo) && $tipo !='l' ? 'usuarios.php' : 'login.php')?>" class="btn corSite text-light"><i class="bi bi-arrow-left"></i></a>
+		<a title="Voltar" <?php if(isset($tipo) && $tipo !='l'){ echo 'href="usuarios.php"'; }else if(isset($tipo) && $tipo =='l'){ echo 'href="index.php"';}else{echo 'href="login.php"';} ?> class="btn corSite text-light"><i class="bi bi-arrow-left"></i></a>
 	</section>
 
 	<div class="card mt-3">
@@ -35,7 +35,8 @@
 					<input type="text" class="form-control" name="cpf" id="cpf" value="<?= $usuario->cpf;?>" required>
 				</div>
 
-				<?php if(!isset($usuario->senha)){ ?>
+				<!--O campo senha só aparecerá se for para cadastrar ou o administrador quiser trocar a senha-->
+				<?php if(!isset($usuario->senha) OR (isset($tipo) && $tipo !='l')){ ?>
 					<div class="form-group">
 						<label for="senha">Senha *</label>
 						<input type="text" class="form-control" name="senha" value="<?= $usuario->senha;?>" required>
@@ -49,7 +50,7 @@
 
 				<div class="form-group mt-3">
 					<div class="form-group">
-						<button type="submit" class="btn corSite"><i class="bi bi-floppy"></i></button>
+						<button type="submit" title="Salvar" class="btn corSite"><i class="bi bi-floppy"></i></button>
 					</div>
 				</div>
 			</form>
