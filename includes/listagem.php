@@ -23,9 +23,7 @@
 			?>
 
 			<?php if(isset($tipo) && $tipo != "l"){ ?>
-				<a href="cadastrar.php">
-					<button class="btn corSite text-light" title="Nova Notícia"><i class="bi bi-plus-lg"></i></button>
-				</a>
+				<a href="cadastrar.php" class="btn corSite text-light" title="Nova Notícia"><i class="bi bi-plus-lg"></i></a>
 			<?php } ?>
 		</section>
 
@@ -40,26 +38,38 @@
 							
 				?>	
 				
-							<div class ="col-5">
-								<div class="card mt-4 col-5" style="max-width: 540px;">
-									<div class="card-body">
-										<a class="linkCardNoticia" href="visualizadorDeNoticias.php?id=<?= $noticias->id ?>">	
-											<div class="row">
-												<div class="col-4 p-0">
-													<img src="<?= $noticias->imagem ?>" id="imagem" class="img-fluid rounded-start" alt="imagem da notícia">
+							<div class ="col-5 mb-3">
+								<div class="card" style="max-width: 540px;">
+									<div class="card-body p-1">
+										<div class="container">
+												
+												<div class="row">
+													
+														<div class="col-4 p-0">
+															<a class="linkCardNoticia" href="visualizadorDeNoticias.php?id=<?= $noticias->id ?>">
+																<img src="<?= $noticias->imagem ?>" id="imagem" class="img-fluid rounded-start imgNoticia" alt="imagem da notícia">
+															</a>
+														</div>
+														<div class="col-8 text-dark" id="info_noticia">
+															<a class="linkCardNoticia" href="visualizadorDeNoticias.php?id=<?= $noticias->id ?>">
+																<h5 class="card-title" style="min-height:80px"><?= $noticias->titulo ?></h5>
+																
+																<p class="card-text ">
+																	<small class="text-muted "> <?= date('d/m/Y',strtotime($noticias->data)) ?> </small>
+																</p>
+																<?php if(isset($tipo) && $tipo != "l"){ ?>
+																	<div class="col mt-3">
+																		<a href="editar.php?id=<?= $noticias->id ?>" title="Editar" class="btn corSite"><i class="bi bi-pencil"></i></a>
+																		<a href="excluir.php?id=<?= $noticias->id ?>" title="Excluir" class="btn corSite"><i class="bi bi-trash"></i></a>
+																	</div>
+																<?php }	?>
+																
+															</a>
+														</div>
+													
 												</div>
-												<div class="col-5">
-													<div class="card-body text-dark" id="info_noticia">
-														<h5 class="card-title row" style="min-height:80px"><?= $noticias->titulo ?></h5>
-														<p class="card-text row"> <small class="text-muted p-0"> <?= date('d/m/Y',strtotime($noticias->data)) ?> </small> </p>
-														<?php if(isset($tipo) && $tipo != "l"){ ?>
-															<a href="editar.php?id=<?= $noticias->id ?>" class="btn corSite">Editar</a>
-															<a href="excluir.php?id=<?= $noticias->id ?>" class="btn corSite">Excluir</a>
-														<?php }	?>
-													</div>
-												</div>
-											</div>
-										</a>
+											
+										</div>
 									</div>
 								</div>
 								
