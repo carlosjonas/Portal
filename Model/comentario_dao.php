@@ -10,7 +10,8 @@
         
         //Função que retorna os comentários
         public function getComentario($id){
-
+            
+            //Só escolhe os comentários em que os usuários estão no sistema
             $query = "  SELECT C.*, U.nome, U.imagem FROM comentarios AS C
                         INNER JOIN usuarios AS U ON U.id = C.idUsuario
                         WHERE idNoticia = ".$id."

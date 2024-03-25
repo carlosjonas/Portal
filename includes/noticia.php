@@ -19,7 +19,7 @@
                 <textarea name="comentario" id="comentario" class="form-control inputComentario" minlength="5" rows="3" required></textarea>
                 <input type="hidden" name="idNoticia" value="<?=$noticia->id?>">
                 <input type="hidden" name="idUsuario" value="<?=$id?>">
-                <a onclick="cadastrarComentario()"  class="btn corSite mt-3">Comentar</a>
+                <a onclick="cadastrarComentario(<?=$id?>,<?=$noticia->id?>)"  class="btn corSite mt-3">Comentar</a>
             </form>
             <?php }else{?>
                 <h5 class="mt-5">Logue para comentar nesta notícia !</h5>
@@ -31,11 +31,22 @@
     </div>
     
     <!-- Scripts -->
-    <script src="assets/script/scriptnoticia.js"></script>
+    
     <script>
-        window.onload = function () {
-            getComentarios();
-        }
+        let sessionId = '<?php 
+                                if(isset($_SESSION['id'])){
+                                    echo $_SESSION['id'];
+                                }; 
+                            ?>';
+        let idNoticia = <?=$_GET['id']?>;
 
-        idNoticia = "<?=$_GET['id']?>";
+        sessionStorage.setItem("sessionId", sessionId);
+        sessionStorage.setItem("idNoticia", idNoticia);
+        window.onload = function () {
+            
+            getComentarios(idNoticia,sessionId);
+        }
+        
+        
     </script>
+    <script src="assets/script/scriptnoticia.js"></script>

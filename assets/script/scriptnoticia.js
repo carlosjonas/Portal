@@ -21,12 +21,9 @@ function trocarBotãoEditar(id){
     btnEditar.setAttribute("onclick", "editarComentario("+id+")");
 }
 
-function cadastrarComentario(){
-        <?php if(isset($_SESSION['id'])){ ?>
-        let idUsuario ="<?=$_SESSION['id']?>"
-        <?php } ?>
-    let idNoticia = <?=$_GET['id']?>;
-    console.log(idUsuario,idNoticia)
+function cadastrarComentario(sessionId,idNoticia){
+        
+    let idUsuario = sessionId
     textarea = document.getElementById("comentario");
     comentario = textarea.value
     
@@ -41,9 +38,8 @@ function cadastrarComentario(){
                 try{
                     let json = JSON.parse(this.responseText);
                     if (json == true ) {
-                        btn = document.getElementById("btnCloseModal")
-                        btn.click();
-                        getComentarios();
+                        fechaModal();
+                        getComentarios(idNoticia,sessionId);
                         textarea.value = "";
                     }
                 }catch(error){
@@ -58,12 +54,11 @@ function cadastrarComentario(){
 }
 
 //Função que faz uma requisição para pegar os comentários
-function getComentarios(){
+function getComentarios(idNoticia,sessionId){
     url = "./Controller/comentario_controller.php?action=getComentario&id="+idNoticia;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
 
             // Atribuindo a response text a json para ficar mais semantico
             let json = JSON.parse(this.responseText);
@@ -76,7 +71,6 @@ function getComentarios(){
             if (json == '' ) {
                 txt += '<h4 class="text-center">Nenhum comentário para essa notícia</h4>'
             }else if(json != '' ){
-                console.log(json)
                 json.forEach(function(comentario){
                     spliter = comentario.data.split(" ")
                     data = spliter[0]
@@ -84,7 +78,7 @@ function getComentarios(){
                     data = datasplit[2]+"-"+datasplit[1]+"-"+datasplit[0];
                     txt +='<li class="list-group-item d-flex justify-content-between align-items-start">'
                     txt +='    <div>'
-                    txt +='        <img class="imagemComentario" src="'+comentario.imagem+'">'
+                    txt +='        <img class="imagemComentario" src="'+comentario.imagem+'" onerror="this.src=\'image/usuarioDefault.png\'">'
                     txt +='    </div>'
                     txt +='    <div class="ms-2 me-auto col">'
                     txt +='        <div class="divComentario">'
@@ -96,15 +90,14 @@ function getComentarios(){
                     txt +='   </div>'
                     txt +='     <div class="ms-2">'
                     txt +='        <span class="badge corSite text-dark rounded-pill">'+data+'</span>'
-                    <?php if(isset($_SESSION['id'])){?>
-                        idUsuario = "<?= $_SESSION['id']; ?>";
-                        if(idUsuario == comentario.idUsuario){
-                            txt +='<div class="mt-2">'
-                            txt +=' <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>'
-                            txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,\'deletarComentario\','+comentario.id+')"><i class="bi bi-trash"></i></a>'
-                            txt +='</div>'
-                        }
-                    <?php } ?>
+                    
+                    idUsuario = sessionId;
+                    if(idUsuario == comentario.idUsuario){
+                        txt +='<div class="mt-2">'
+                        txt +=' <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>'
+                        txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,\'deletarComentario\','+comentario.id+')"><i class="bi bi-trash"></i></a>'
+                        txt +='</div>'
+                    }
                     txt +='     </div>'
                     txt +='</li>'
                 });
@@ -125,7 +118,6 @@ function editarComentario(id){
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
 
             // Atribuindo a response text a json para ficar mais semantico
             try{
@@ -146,20 +138,19 @@ function editarComentario(id){
 
 //Função que faz uma requisição para pegar os comentários
 function deletarComentario(id){
-    
     url = "./Controller/comentario_controller.php?action=deletarComentario&id="+id;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
 
             // Atribuindo a response text a json para ficar mais semantico
             try{
                 let json = JSON.parse(this.responseText);
                 if (json == true ) {
-                    btn = document.getElementById("btnCloseModal")
-                    btn.click();
-                    getComentarios();
+                    fechaModal()
+                    sessionId = sessionStorage.getItem("sessionId");
+                    idNoticia = sessionStorage.getItem("idNoticia");
+                    getComentarios(idNoticia,sessionId);
 
                 }
             }catch(error){
