@@ -7,23 +7,23 @@
 
             <div class="card">
                 <div class="card-body">
-                <table class="table table-striped">
-                    <thead class="text-center">
-                        <tr>
-                        <th scope="col">Imagem</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">CPF</th>
-                        <th scope="col">RG</th>
-                        <th scope="col">Cadastro</th>
-                        <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-usuarios">
+                    <table class="table table-striped">
+                        <thead class="text-center">
+                            <tr>
+                            <th scope="col">Imagem</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">RG</th>
+                            <th scope="col">Cadastro</th>
+                            <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-usuarios"></tbody>
                         
-                    </tbody>
                     </table>
+                    <div class="container" id="paginacao"></div>
                 </div>
             </div>
         </section>
@@ -31,9 +31,10 @@
     <!-- Scripts -->
     <script src="assets/script/scriptlistaDeUsuarios.js"></script>
     <script>
-        idUsuario = <?= $_SESSION['id'];?>;
-        
-         window.onload = function () {
-            getUsuarios();
+        let idUsuario = <?= $_SESSION['id'];?>;
+        let pagina = 1;
+		let qtd_reg_pagina = 10;
+        window.onload = function () {
+            getUsuarios(pagina, qtd_reg_pagina);
         }
     </script>

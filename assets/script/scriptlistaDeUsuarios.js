@@ -1,10 +1,10 @@
 
 //Função que faz uma requisição para pegar os comentários
-function getUsuarios(){
-    url = "./Controller/usuario_controller.php?action=getUsuarios";
+function getUsuarios(pagina, qtd_reg_pagina){
+    url = "./Controller/usuario_controller.php?action=getUsuarios&pagina="+pagina+"&qtd="+qtd_reg_pagina;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {         
+        if (this.readyState == 4 && this.status == 200) {       
             montarLista(this.responseText)
         }
     }
@@ -16,17 +16,17 @@ function getUsuarios(){
 //Função que monta a lista de Usuários
 function montarLista(resposta){
     // Atribuindo a response text a json para ficar mais semantico
-    let json = JSON.parse(resposta);
-
+    let registros = JSON.parse(resposta);
+    console.log(registros)
     //Inicializando o txt para receber a estrutura de tabela
     let txt = '';
 
     let lista = document.getElementById("tbody-usuarios")
 
-    if (json == '' ) {
+    if (registros == '' ) {
         txt += '<h4 class="text-center">Nenhum comentário para essa notícia</h4>'
-    }else if(json != '' ){
-        json.forEach(function(usuario){
+    }else if(registros != '' ){
+        registros.json.forEach(function(usuario){
             spliter = usuario.data.split(" ")
             data = spliter[0]
             datasplit = data.split("-");
@@ -47,6 +47,11 @@ function montarLista(resposta){
             txt += '    </th>'
             txt += '</tr>'
         });
+
+        if (registros.paginacao){
+            paginacao = registros.paginacao
+        }
+        document.getElementById("paginacao").innerHTML = paginacao;
 
     }
     lista.innerHTML = txt;

@@ -7,7 +7,7 @@
     switch ($action) {
 
         case "getUsuarios":
-            $dao->getUsuarios();
+            $dao->getUsuarios($_REQUEST['pagina'],$_REQUEST['qtd']);
         break;
         
         case "deletarUsuario":
