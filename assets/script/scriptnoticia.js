@@ -54,24 +54,24 @@ function cadastrarComentario(sessionId,idNoticia){
 }
 
 //Função que faz uma requisição para pegar os comentários
-function getComentarios(idNoticia,sessionId){
-    url = "./Controller/comentario_controller.php?action=getComentario&id="+idNoticia;
+function getComentarios(idNoticia,sessionId,pagina, qtd_reg_pagina){
+    url = "./Controller/comentario_controller.php?action=getComentario&id="+idNoticia+"&sessionId="+sessionId+"&pagina="+pagina+"&qtd="+qtd_reg_pagina;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
-
+            console.log(this.responseText)
             // Atribuindo a response text a json para ficar mais semantico
-            let json = JSON.parse(this.responseText);
+            let registros = JSON.parse(this.responseText);
 
             //Inicializando o txt para receber a estrutura de card
             let txt = '';
             
             let lista = document.getElementById("list-Group")
 
-            if (json == '' ) {
+            if (registros == '' ) {
                 txt += '<h4 class="text-center">Nenhum comentário para essa notícia</h4>'
-            }else if(json != '' ){
-                json.forEach(function(comentario){
+            }else if(registros != '' ){
+                registros.json.forEach(function(comentario){
                     spliter = comentario.data.split(" ")
                     data = spliter[0]
                     datasplit = data.split("-");
@@ -101,6 +101,11 @@ function getComentarios(idNoticia,sessionId){
                     txt +='     </div>'
                     txt +='</li>'
                 });
+
+                if (registros.paginacao){
+                    paginacao = registros.paginacao
+                }
+                document.getElementById("paginacao").innerHTML = paginacao;
 
             }
             lista.innerHTML = txt;

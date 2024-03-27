@@ -27,6 +27,7 @@
             <hr class="mt-3" />
             <h4 class="mt-3">Comentários:</h4>
             <ul id="list-Group" class="list-group"></ul>
+            <div id="paginacao"></div>
         </div>
     </div>
     
@@ -43,8 +44,9 @@
         sessionStorage.setItem("sessionId", sessionId);
         sessionStorage.setItem("idNoticia", idNoticia);
         window.onload = function () {
-            
-            getComentarios(idNoticia,sessionId);
+            let pagina = 1;
+		    let qtd_reg_pagina = 10;
+            getComentarios(idNoticia,sessionId,pagina,qtd_reg_pagina);
         }
         
         

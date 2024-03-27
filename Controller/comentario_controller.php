@@ -7,7 +7,7 @@
     switch ($action) {
 
         case "getComentario":
-            $dao->getComentario($_REQUEST['id']);
+            $dao->getComentario($_REQUEST['id'],$_REQUEST['sessionId'],$_REQUEST['pagina'],$_REQUEST['qtd']);
         break;
 
         case "cadastrarComentario":
