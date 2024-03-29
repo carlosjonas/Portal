@@ -19,7 +19,7 @@
                 <textarea name="comentario" id="comentario" class="form-control inputComentario" minlength="5" rows="3" required></textarea>
                 <input type="hidden" name="idNoticia" value="<?=$noticia->id?>">
                 <input type="hidden" name="idUsuario" value="<?=$id?>">
-                <a onclick="cadastrarComentario(<?=$id?>,<?=$noticia->id?>)"  class="btn corSite mt-3">Comentar</a>
+                <a onclick="cadastrarComentario(<?=$id?>,<?=$noticia->id?>,1,10)"  class="btn corSite mt-3">Comentar</a>
             </form>
             <?php }else{?>
                 <h5 class="mt-5">Logue para comentar nesta notícia !</h5>
@@ -27,7 +27,7 @@
             <hr class="mt-3" />
             <h4 class="mt-3">Comentários:</h4>
             <ul id="list-Group" class="list-group"></ul>
-            <div id="paginacao"></div>
+            <div id="paginacao" class="mt-3"></div>
         </div>
     </div>
     
@@ -41,11 +41,13 @@
                             ?>';
         let idNoticia = <?=$_GET['id']?>;
 
-        sessionStorage.setItem("sessionId", sessionId);
-        sessionStorage.setItem("idNoticia", idNoticia);
+        localStorage.setItem("sessionId", sessionId);
+        localStorage.setItem("idNoticia", idNoticia);
         window.onload = function () {
             let pagina = 1;
 		    let qtd_reg_pagina = 10;
+            localStorage.setItem("pagina", sessionId);
+            localStorage.setItem("qtd_reg_pagina", idNoticia);
             getComentarios(idNoticia,sessionId,pagina,qtd_reg_pagina);
         }
         

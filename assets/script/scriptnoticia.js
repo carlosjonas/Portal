@@ -9,16 +9,16 @@ function mudarParaTextarea(id){
     
     //Foco
     textarea = document.getElementById("textarea"+id);
-    textarea.focus()
+    textarea.focus();
     
     //Mudando botão
-    trocarBotãoEditar(id)
+    trocarBotãoEditar(id,paragrafo.innerHTML);
 }
 
-function trocarBotãoEditar(id){
+function trocarBotãoEditar(id,comentarioDefault){
     btnEditar = document.getElementById("btnEditar"+id);
     btnEditar.innerHTML = '<i class="bi bi-floppy"></i>';
-    btnEditar.setAttribute("onclick", "editarComentario("+id+")");
+    btnEditar.setAttribute("onclick", "editarComentario("+id+",\""+comentarioDefault+"\")");
 }
 
 function cadastrarComentario(sessionId,idNoticia){
@@ -32,19 +32,20 @@ function cadastrarComentario(sessionId,idNoticia){
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
+                pagina          = localStorage.getItem("pagina")
+                qtd_reg_pagina  = localStorage.getItem("qtd_reg_pagina")
 
                 // Atribuindo a response text a json para ficar mais semantico
                 try{
                     let json = JSON.parse(this.responseText);
                     if (json == true ) {
                         fechaModal();
-                        getComentarios(idNoticia,sessionId);
+                        mostrarModalAviso('Comentário cadastrado com sucesso!',true);
+                        getComentarios(idNoticia,sessionId,pagina,qtd_reg_pagina);
                         textarea.value = "";
                     }
                 }catch(error){
-                    mostrarModalAviso('Erro ao cadastrar o comentário!',true)
-                    
+                    mostrarModalAviso('Erro ao cadastrar o comentário!',true);
                 }
             }
         }
@@ -66,46 +67,47 @@ function getComentarios(idNoticia,sessionId,pagina, qtd_reg_pagina){
             //Inicializando o txt para receber a estrutura de card
             let txt = '';
             
-            let lista = document.getElementById("list-Group")
+            let lista = document.getElementById("list-Group");
 
             if (registros == '' ) {
                 txt += '<h4 class="text-center">Nenhum comentário para essa notícia</h4>'
             }else if(registros != '' ){
                 registros.json.forEach(function(comentario){
-                    spliter = comentario.data.split(" ")
-                    data = spliter[0]
+                    spliter = comentario.data.split(" ");
+                    data = spliter[0];
                     datasplit = data.split("-");
                     data = datasplit[2]+"-"+datasplit[1]+"-"+datasplit[0];
-                    txt +='<li class="list-group-item d-flex justify-content-between align-items-start">'
-                    txt +='    <div>'
-                    txt +='        <img class="imagemComentario" src="'+comentario.imagem+'" onerror="this.src=\'image/usuarioDefault.png\'">'
-                    txt +='    </div>'
-                    txt +='    <div class="ms-2 me-auto col">'
-                    txt +='        <div class="divComentario">'
-                    txt +='            <div class="fw-bold"><h4>'+comentario.nome+'</h4></div>'
-                    txt +='            <div id="comentario'+comentario.id+'">'
-                    txt +='               <p id="paragrafo'+comentario.id+'">'+comentario.comentario+'</p>'
-                    txt +='            </div>'
-                    txt +='        </div>'
-                    txt +='   </div>'
-                    txt +='     <div class="ms-2">'
-                    txt +='        <span class="badge corSite text-dark rounded-pill">'+data+'</span>'
+                    txt +='<li class="list-group-item d-flex justify-content-between align-items-start">';
+                    txt +='    <div>';
+                    txt +='        <img class="imagemComentario" src="'+comentario.imagem+'" onerror="this.src=\'image/usuarioDefault.png\'">';
+                    txt +='    </div>';
+                    txt +='    <div class="ms-2 me-auto col">';
+                    txt +='        <div class="divComentario">';
+                    txt +='            <div class="fw-bold"><h4>'+comentario.nome+'</h4></div>';
+                    txt +='            <div id="comentario'+comentario.id+'">';
+                    txt +='               <p id="paragrafo'+comentario.id+'">'+comentario.comentario+'</p>';
+                    txt +='            </div>';
+                    txt +='        </div>';
+                    txt +='   </div>';
+                    txt +='     <div class="ms-2">';
+                    txt +='        <span class="badge corSite text-dark rounded-pill">'+data+'</span>';
                     
                     idUsuario = sessionId;
                     if(idUsuario == comentario.idUsuario){
-                        txt +='<div class="mt-2">'
-                        txt +=' <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>'
-                        txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,\'deletarComentario\','+comentario.id+')"><i class="bi bi-trash"></i></a>'
-                        txt +='</div>'
+                        txt +='<div class="mt-2">';
+                        txt +=' <a class="btn corSite" title="Editar" id="btnEditar'+comentario.id+'" onclick="mudarParaTextarea('+comentario.id+')"><i class="bi bi-pencil"></i></a>';
+                        txt +=' <a class="btn corSite" title="Excluir" onclick="mostrarModalAviso(\'Tem certeza que deseja excluir esse comentário ?\',false,\'deletarComentario\','+comentario.id+')"><i class="bi bi-trash"></i></a>';
+                        txt +='</div>';
                     }
-                    txt +='     </div>'
-                    txt +='</li>'
+                    txt +='     </div>';
+                    txt +='</li>';
                 });
 
-                if (registros.paginacao){
-                    paginacao = registros.paginacao
+                if (registros.paginacao ){
+                    paginacao = registros.paginacao;
+                    document.getElementById("paginacao").innerHTML = paginacao;
                 }
-                document.getElementById("paginacao").innerHTML = paginacao;
+                
 
             }
             lista.innerHTML = txt;
@@ -117,27 +119,32 @@ function getComentarios(idNoticia,sessionId,pagina, qtd_reg_pagina){
 }
 
 //Função que faz uma requisição para pegar os comentários
-function editarComentario(id){
+function editarComentario(id,comentarioDefault){
     comentario = document.getElementById("textarea"+id).value
-    url = "./Controller/comentario_controller.php?action=editarComentario&id="+id+"&comentario="+comentario;
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
+    if(comentario != comentarioDefault){
+        url = "./Controller/comentario_controller.php?action=editarComentario&id="+id+"&comentario="+comentario;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
 
-            // Atribuindo a response text a json para ficar mais semantico
-            try{
-                let json = JSON.parse(this.responseText);
-                if (json == true ) {
-                    mudarParaParagrafo(id);
+                // Atribuindo a response text a json para ficar mais semantico
+                try{
+                    let json = JSON.parse(this.responseText);
+                    if (json == true ) {
+                        mudarParaParagrafo(id);
+                        mostrarModalAviso('Comentário editado com sucesso!',true);
+                    }
+                }catch(error){
+                    mostrarModalAviso('Erro ao editar o comentário!',true);
+                    
                 }
-            }catch(error){
-                mostrarModalAviso('Erro ao editar o comentário!',true)
-                
             }
         }
+        xhttp.open("GET", url);
+        xhttp.send();
+    }else{
+        mudarParaParagrafo(id);
     }
-    xhttp.open("GET", url);
-    xhttp.send();
 
 }
 
@@ -147,20 +154,25 @@ function deletarComentario(id){
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
-
+            
             // Atribuindo a response text a json para ficar mais semantico
             try{
                 let json = JSON.parse(this.responseText);
                 if (json == true ) {
-                    fechaModal()
-                    sessionId = sessionStorage.getItem("sessionId");
-                    idNoticia = sessionStorage.getItem("idNoticia");
-                    getComentarios(idNoticia,sessionId);
 
+                    fechaModal();
+                    
+                    sessionId       = localStorage.getItem("sessionId");
+                    idNoticia       = localStorage.getItem("idNoticia");
+                    pagina          = localStorage.getItem("pagina");
+                    qtd_reg_pagina  = localStorage.getItem("qtd_reg_pagina");
+
+                    getComentarios(idNoticia,sessionId,pagina,qtd_reg_pagina);
+                    mostrarModalAviso('Comentário deletado com sucesso!',true);
+                    
                 }
             }catch(error){
-                mostrarModalAviso('Erro ao deletar o comentário!',true)
-                
+                mostrarModalAviso('Erro ao deletar o comentário!',true);
             }
         }
     }
@@ -173,9 +185,9 @@ function deletarComentario(id){
 function mudarParaParagrafo(id){
 
     //Mudando texto para textarea
-    inputTexto = document.getElementById("comentario"+id);
-    textarea = document.getElementById("textarea"+id);
-    html = '<p id="paragrafo'+id+'">'+textarea.value+'</p>'
+    inputTexto  = document.getElementById("comentario"+id);
+    textarea    = document.getElementById("textarea"+id);
+    html        = '<p id="paragrafo'+id+'">'+textarea.value+'</p>'
     inputTexto.innerHTML = html;
 
     //Mudando botão
