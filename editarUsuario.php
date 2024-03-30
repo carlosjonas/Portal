@@ -48,7 +48,7 @@
             exit;
 
         }catch(Exception $e){
-            $msg = "Usuário editado com sucesso!";
+            $msg = "Erro ao editar usuário!";
             header("location: $link?status=error&msg=".urlencode($msg));
             exit;
         }

@@ -13,7 +13,8 @@ if(isset($_POST["email"])){
 
         header('Refresh: 0; url=index.php');
     }else{
-        header('location: index.php?status=error');
+        $msg = "Erro ao logar, verifique seu email ou senha!";
+        header('location: index.php?status=error&msg='.urlencode($msg));
     }
 }
 
