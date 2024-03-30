@@ -24,7 +24,8 @@ if (isset($_POST['titulo'],$_POST['descricao'],$_POST['ativo'])) {
 	$noticia->ativo = $_POST['ativo'];
 	$noticia->cadastrar();
 
-	header('location: index.php?status=success');
+	$msg = "Notícia cadastrada com sucesso!";
+	header('location: index.php?status=success&msg='.urlencode($msg));
 	exit;
 
 }

@@ -43,11 +43,13 @@
             session_start();
             $link = (isset($_SESSION['tipo']) && $_SESSION['tipo'] !='l' ? 'usuarios.php' : 'index.php');
             
-            header("location: $link?status=success");
+            $msg = "Usuário editado com sucesso!";
+            header("location: $link?status=success&msg=".urlencode($msg));
             exit;
 
         }catch(Exception $e){
-            header("location: $link?status=error&tipo=erroEditarUsuario");
+            $msg = "Usuário editado com sucesso!";
+            header("location: $link?status=error&msg=".urlencode($msg));
             exit;
         }
     }

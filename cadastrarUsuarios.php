@@ -54,7 +54,8 @@ if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
         }
         
         $usuario->cadastrar();
-        header('location: login.php');
+        $msg = "Usuário cadastrado com sucesso!";
+        header('location: login.php?status=success&msg='.urlencode($msg));
         exit;
 
     }catch(Exception $e){

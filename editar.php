@@ -28,8 +28,9 @@
 		$noticia->descricao = $_POST['descricao'];
 		$noticia->ativo = $_POST['ativo'];
 		$noticia->atualizar();
-
-		header('location: home.php?status=success&acao=refresh');
+		
+		$msg = "Notícia editada com sucesso!";
+		header('location: home.php?status=success&acao=refresh&msg='.urlencode($msg));
 		exit;
 
 	}
