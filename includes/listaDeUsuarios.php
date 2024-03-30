@@ -34,6 +34,10 @@
         let idUsuario = <?= $_SESSION['id'];?>;
         let pagina = 1;
 		let qtd_reg_pagina = 10;
+
+        localStorage.setItem("pagina", pagina);
+        localStorage.setItem("qtd_reg_pagina", qtd_reg_pagina);
+        
         window.onload = function () {
             getUsuarios(pagina, qtd_reg_pagina);
         }

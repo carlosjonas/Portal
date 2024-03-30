@@ -4,7 +4,8 @@ function getUsuarios(pagina, qtd_reg_pagina){
     url = "./Controller/usuario_controller.php?action=getUsuarios&pagina="+pagina+"&qtd="+qtd_reg_pagina;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {       
+        if (this.readyState == 4 && this.status == 200) {  
+            console.log(this.responseText)     
             montarLista(this.responseText)
         }
     }
@@ -16,6 +17,7 @@ function getUsuarios(pagina, qtd_reg_pagina){
 //Função que monta a lista de Usuários
 function montarLista(resposta){
     // Atribuindo a response text a json para ficar mais semantico
+    console.log(resposta);
     let registros = JSON.parse(resposta);
     console.log(registros)
     //Inicializando o txt para receber a estrutura de tabela
@@ -66,7 +68,10 @@ function deletarUsuario(id){
                 let json = JSON.parse(this.responseText);
                 if (json == true ) {
                     mostrarModalAviso('Usuário deletado!',true);
-                    getUsuarios();
+
+                    pagina          = localStorage.getItem("pagina");
+                    qtd_reg_pagina  = localStorage.getItem("qtd_reg_pagina");
+                    getUsuarios(pagina,qtd_reg_pagina);
 
                 }
             }catch(error){
