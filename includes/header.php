@@ -144,4 +144,10 @@
 
     <div class="container">
 
+    <script>
+      window.onload = function () {
+        getMessages(window.location.href);
+      }
+    </script>
+
     

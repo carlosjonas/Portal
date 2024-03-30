@@ -22,3 +22,22 @@ function fechaModal(){
     modal = document.getElementById("my-modal")
     modal.style.display = 'none';
 }
+
+//Função que pega uma mensagem no url e exibe no modal
+function getMessages(url){
+    let params = new URLSearchParams(window.location.search);
+    let status = params.get('status');
+    if(status){
+
+        let mensagem =  decodeURI(params.get('msg'))
+        
+        const urlObj = new URL(url);
+        // Removendo os parâmetros de pesquisa da URL
+        urlObj.search = '';
+        // Atualizando a URL atual no histórico do navegador
+        window.history.replaceState({}, '', urlObj.toString());
+
+        mostrarModalAviso(mensagem,true);
+    }
+
+}

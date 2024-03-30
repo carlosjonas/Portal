@@ -28,12 +28,38 @@ if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
         $usuario->cpf = $_POST['cpf'];
         $usuario->senha = $_POST['senha'];
         $usuario->tipo = 'l';
-        $usuario->cadastrar();
 
+        $query = "SELECT rg FROM usuarios WHERE rg = '$usuario->rg'";
+        $pessoa = $usuario->getUsuarios(null,null,null,$query);
+        if($pessoa[0]->rg != ""){
+            $msg = "Um usuário com este RG já foi cadastrado!";
+            header('location: cadastrarUsuarios.php?status=error&msg='.urlencode($msg));
+            exit;
+        }
+
+        $query = "SELECT cpf FROM usuarios WHERE cpf = '$usuario->cpf'";
+        $pessoa = $usuario->getUsuarios(null,null,null,$query);
+        if($pessoa[0]->cpf != ""){
+            $msg = "Um usuário com este CPF já foi cadastrado!";
+            header('location: cadastrarUsuarios.php?status=error&msg='.urlencode($msg));
+            exit;
+        }
+
+        $query = "SELECT email FROM usuarios WHERE email = '$usuario->email'";
+        $pessoa = $usuario->getUsuarios(null,null,null,$query);
+        if($pessoa[0]->email != ""){
+            $msg = "Um usuário com este email já foi cadastrado!";
+            header('location: cadastrarUsuarios.php?status=error&msg='.urlencode($msg));
+            exit;
+        }
+        
+        $usuario->cadastrar();
         header('location: login.php');
+        exit;
 
     }catch(Exception $e){
-        header('location: login.php?status=error');
+        header('location: cadastrarUsuarios.php?status=error');
+        exit;
     }
 }
 

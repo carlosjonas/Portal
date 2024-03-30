@@ -50,9 +50,8 @@ function montarLista(resposta){
 
         if (registros.paginacao){
             paginacao = registros.paginacao
+            document.getElementById("paginacao").innerHTML = paginacao;
         }
-        document.getElementById("paginacao").innerHTML = paginacao;
-
     }
     lista.innerHTML = txt;
 }
