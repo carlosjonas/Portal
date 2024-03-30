@@ -1,27 +1,5 @@
 	<main>
 		<section class="mt-3">
-			<?php 
-				// Verificando o status da url para mandar a mensagem de sucesso
-				$mensagem = '';
-				
-				if (isset($_GET['status'])) {
-					switch ($_GET['status']) {
-						case 'success':
-							$mensagem= '<div class="alert alert-success text-center" id="alert">Ação executada com sucesso!
-											<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-										</div>';
-							break;
-						case 'error':
-							$mensagem= '<div class="alert alert-danger text-center">Ação não executada!<
-											<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-										/div>';
-							break;
-					}
-				}
-			
-				echo $mensagem;
-			?>
-
 			<?php if(isset($tipo) && $tipo != "l"){ ?>
 				<a href="cadastrar.php" class="btn corSite text-light" title="Nova Notícia"><i class="bi bi-plus-lg"></i></a>
 			<?php } ?>
