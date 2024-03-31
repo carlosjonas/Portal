@@ -46,8 +46,8 @@
         window.onload = function () {
             let pagina = 1;
 		    let qtd_reg_pagina = 10;
-            localStorage.setItem("pagina", sessionId);
-            localStorage.setItem("qtd_reg_pagina", idNoticia);
+            localStorage.setItem("pagina", pagina);
+            localStorage.setItem("qtd_reg_pagina", qtd_reg_pagina);
             getComentarios(idNoticia,sessionId,pagina,qtd_reg_pagina);
         }
         

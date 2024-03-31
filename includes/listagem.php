@@ -6,57 +6,25 @@
 		</section>
 
 		<section>
-			<div class="row justify-content-evenly">
-				<?php 
-					$resultados = '';
-					$resultados = strlen($resultados) ? $resultados : '<p>Nenhuma Nótícia publicada!</p>';
-					foreach($noticia as $noticias){
-						
-						if($noticias->ativo != "n"){
-							
-				?>	
-				
-							<div class ="col-5 mb-3">
-								<div class="card" style="max-width: 540px;">
-									<div class="card-body p-1">
-										<div class="container">
-											<div class="row">
-												<div class="col-4 p-0">
-													<a class="linkCardNoticia" href="visualizadorDeNoticias.php?id=<?= $noticias->id ?>">
-														<img src="<?= $noticias->imagem ?>" id="imagem" class="img-fluid rounded-start imgNoticia" alt="imagem da notícia">
-													</a>
-												</div>
-												<div class="col-8 text-dark" id="info_noticia">
-													<a class="linkCardNoticia" href="visualizadorDeNoticias.php?id=<?= $noticias->id ?>">
-														<h5 class="card-title" style="min-height:80px"><?= $noticias->titulo ?></h5>
-														
-														<p class="card-text">
-															<small class="text-muted "> <?= date('d/m/Y',strtotime($noticias->data)) ?> </small>
-														</p>
-														<?php if(isset($tipo) && $tipo != "l"){ ?>
-															<div class="mt-3">
-																<a href="editar.php?id=<?= $noticias->id ?>" title="Editar" class="btn corSite"><i class="bi bi-pencil"></i></a>
-																<a href="excluir.php?id=<?= $noticias->id ?>" title="Excluir" class="btn corSite"><i class="bi bi-trash"></i></a>
-															</div>
-														<?php }	?>
-														
-													</a>
-												</div>
-												
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								
-							</div>
-				
-				<?php 
-						}
-					}
-					
-				?>	
-			</div>
+			<div class="row justify-content-evenly" id="areaNoticias"></div>
+			<div id="paginacao" class="mt-3">
 		</section>
+
+		<!-- Scripts -->
+		<script>
+
+			let pagina = 1;
+			let qtd_reg_pagina = 10;
+			let tipo = '<?=$_SESSION['tipo'];?>';
+			window.onload = function () {
+				
+				localStorage.setItem("pagina", pagina);
+				localStorage.setItem("qtd_reg_pagina", qtd_reg_pagina);
+				getNoticias(pagina,qtd_reg_pagina);
+			}
+        
+        
+		</script>
+		<script src="assets/script/scriptindex.js"></script>
 
 	</main>

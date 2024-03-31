@@ -41,8 +41,8 @@ class Noticia{
 	}
 
 	//Método que retorna as notícias do banco
-	public static function getNoticias($where = null, $order = null, $limit = null){
-		return (new DataBase('noticias'))->select($where,$order,$limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+	public static function getNoticias($where = null, $order = null, $limit = null, $query = null){
+		return (new DataBase('noticias'))->select($where,$order,$limit,$query)->fetchAll(PDO::FETCH_CLASS, self::class);
 	}
 
 	//Método que retorna notícia com o id
