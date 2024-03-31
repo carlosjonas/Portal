@@ -7,6 +7,8 @@ define('TITLE','Cadastrar Usuário');
 use \App\Entity\Usuario;
 $usuario = new Usuario();
 
+
+
 // Validação de campos do formulário 
 if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
 
@@ -33,7 +35,7 @@ if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
         $pessoa = $usuario->getUsuarios(null,null,null,$query);
         if($pessoa[0]->rg != ""){
             $msg = "Um usuário com este RG já foi cadastrado!";
-            header('location: cadastrarUsuarios.php?status=error&msg='.urlencode($msg));
+            header("location: cadastrarUsuarios.php?status=error&msg=".urlencode($msg));
             exit;
         }
 
@@ -55,7 +57,7 @@ if (isset($_POST['nome'],$_POST['email'],$_POST['cpf'],$_POST['senha'])) {
         
         $usuario->cadastrar();
         $msg = "Usuário cadastrado com sucesso!";
-        header('location: login.php?status=success&msg='.urlencode($msg));
+        header("location: login.php?status=success&msg=".urlencode($msg));
         exit;
 
     }catch(Exception $e){

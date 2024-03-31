@@ -18,7 +18,8 @@
 
 	//Validar a notícia
 	if(!$noticia instanceof Noticia){
-		header('location: home.php?status=error');
+		$msg = "Notícia não existe!";
+		header('location: index.php?status=error&msg='.urlencode($msg));
 		exit;
 	}
 

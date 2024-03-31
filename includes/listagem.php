@@ -15,7 +15,10 @@
 
 			let pagina = 1;
 			let qtd_reg_pagina = 10;
-			let tipo = '<?=$_SESSION['tipo'];?>';
+			let tipo = "l";
+			<?php if (isset($_SESSION['tipo'])){?>
+				tipo = '<?=$_SESSION['tipo']?>';
+			<?php } ?>
 			window.onload = function () {
 				
 				localStorage.setItem("pagina", pagina);

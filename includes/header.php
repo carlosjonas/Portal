@@ -106,12 +106,12 @@
           <div class="modal-body">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-4"><img class="imgPerfil" src="<?=$foto?>" onerror="this.src='image/usuarioDefault.png'"></div>
+                <div class="col-4"><img class="imgPerfil" src="<?=$foto;?>" onerror="this.src='image/usuarioDefault.png'"></div>
                 <div class="col-7 ms-2">
-                  <div class="row"><h5> Nome: <?=$nome?> </h5></div>
-                  <div class="row"><h5> Email: <?=$email?> </h5></div>
-                  <div class="row"><h5> Rg: <?=$rg?> </h5></div>
-                  <div class="row"><h5> Cpf: <?=$cpf?> </h5></div>
+                  <div class="row"><h5> Nome: <?=$nome;?> </h5></div>
+                  <div class="row"><h5> Email: <?=$email;?> </h5></div>
+                  <div class="row"><h5> Rg: <?=$rg;?> </h5></div>
+                  <div class="row"><h5> Cpf: <?=$cpf;?> </h5></div>
                 </div>
               </div>
             </div>

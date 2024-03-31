@@ -20,6 +20,9 @@
 							<div class="divInputs">
 								<input id='senha' name='senha' type="password" class="form-control" placeholder="Senha" required>
 							</div>
+
+							<p class="text-end mb-2"><a href="recuperarSenha.php">Esqueci a senha!</a></p>
+
 							<div class="col-xs-12 text-left divBtnSuccess">
 								<button class="btn btn-primary btnSuccess" type="submit">Entrar</button>
 							</div>
